@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DS Tuber 对话输入</title>
+  <link rel="stylesheet" href="chat.css?v=7" />
+</head>
+<body>
+  <div class="bar">
+    <div id="dragStrip" class="drag-strip" title="按住拖动输入条"><span></span></div>
+    <div class="brand" id="dragHandle" title="按住拖动输入条">
+      <div class="logo">DS</div>
+      <div class="who">
+        <div class="status"><span id="dot" class="dot"></span><span id="status">已连接</span></div>
+      </div>
+    </div>
+    <input id="input" type="text" maxlength="4000" autocomplete="off" spellcheck="false" placeholder="说点什么…" />
+    <button id="send" class="send" type="button">发送</button>
+    <button id="close" class="close" type="button" title="关闭输入条">×</button>
+  </div>
+  <script src="chat.js?v=9"></script>
+</body>
+</html>

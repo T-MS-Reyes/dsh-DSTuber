@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>DS Tuber 字幕</title>
+  <style>
+    :root {
+      --subtitle-font: 16px;
+      --subtitle-bg: 0.72;
+    }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #card {
+      position: relative;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      padding: 8px 22px 8px 12px;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      color: #f3fbff;
+      font: var(--subtitle-font) / 1.5 "Segoe UI", "Microsoft YaHei", sans-serif;
+      text-align: center;
+      text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.9),
+        0 0 6px rgba(0, 0, 0, 0.75);
+    }
+    #card.semi {
+      background: rgba(10, 22, 38, var(--subtitle-bg));
+      border: 1px solid rgba(150, 210, 255, 0.45);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+    }
+    #viewport {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #viewport::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+    #viewport.overflowing {
+      align-items: flex-start;
+    }
+    #text {
+      width: 100%;
+      max-height: none;
+      display: block;
+      overflow: visible;
+      word-break: break-word;
+      text-align: center;
+    }
+    #scrollbar {
+      position: absolute;
+      top: 8px;
+      right: 9px;
+      bottom: 8px;
+      width: 8px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.16);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      z-index: 2;
+    }
+    #scrollbar.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #thumb {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      min-height: 18px;
+      border-radius: 3px;
+      background: rgba(230, 248, 255, 0.85);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+      cursor: grab;
+    }
+    #thumb:active {
+      cursor: grabbing;
+    }
+  </style>
+</head>
+<body>
+  <div id="card">
+    <div id="viewport"><div id="text"></div></div>
+    <div id="scrollbar" aria-hidden="true"><div id="thumb"></div></div>
+  </div>
+  <script src="subtitle.js"></script>
+</body>
+</html>

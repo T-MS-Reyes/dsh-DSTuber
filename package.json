@@ -1,0 +1,58 @@
+{
+  "name": "dsh-dstuber",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Live2D desktop companion for DeepSeek Harness: settings, DSH event bridge, chat relay and a Live2D stage.",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./client/client.js",
+    "./package.json": "./package.json",
+    "./icon": "./icon.svg",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "src/",
+    "client/",
+    "stage/",
+    "scripts/",
+    "voice/",
+    "shell/src-tauri/target/release/dsh-dstuber-shell.exe",
+    "dev/live2d/",
+    "assets/",
+    "locale/*.json",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-connection"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=22.19"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.2",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "pixi-live2d-display": "0.4.0",
+    "pixi.js": "6.5.10"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "stage": "node scripts/serve-stage.mjs",
+    "build:model": "node scripts/build-model.mjs",
+    "setup:voice": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-voice.ps1"
+  }
+}

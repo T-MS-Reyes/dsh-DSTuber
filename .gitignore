@@ -1,0 +1,20 @@
+.webview2/
+.webview2-*/
+.tmp/
+node_modules/
+dist/
+.cargo/
+.rustup/
+.npm-cache/
+.tools/
+.edge-headless/
+.edge-test/
+# dev/ 只放开发临时内容；内置模型 dev/live2d 需要随仓库分发
+dev/*
+!dev/live2d/
+!dev/live2d/**
+shell/src-tauri/target/
+shell/src-tauri/gen/
+docs/probe/
+HANDOFF.md
+*.log

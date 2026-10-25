@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="DS Tuber">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17324f"/>
+      <stop offset="1" stop-color="#0b1622"/>
+    </linearGradient>
+    <linearGradient id="whale" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7cc7ff"/>
+      <stop offset="1" stop-color="#3f8fd8"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <path d="M22 74c0-15 13-27 29-27 9 0 16 3 21 8 3-5 8-8 14-8 3 0 5 1 5 4 0 4-4 7-9 10 3 4 5 9 5 14 0 6-3 11-8 14 4 4 7 9 9 15h-9c-2-5-4-9-8-12-4 2-9 3-14 3-20 0-35-9-35-21z" fill="url(#whale)"/>
+  <circle cx="43" cy="65" r="4" fill="#0b1622"/>
+  <path d="M55 78c6 3 13 3 18 0" stroke="#0b1622" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M92 42c6 0 11 2 15 6" stroke="#7cc7ff" stroke-width="4" stroke-linecap="round" fill="none" opacity=".7"/>
+  <circle cx="102" cy="30" r="3" fill="#7cc7ff" opacity=".7"/>
+  <circle cx="113" cy="42" r="2" fill="#7cc7ff" opacity=".5"/>
+</svg>

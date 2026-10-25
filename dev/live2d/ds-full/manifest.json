@@ -1,0 +1,75 @@
+{
+  "id": "ds-full",
+  "name": "DS鲸鱼娘",
+  "version": 3,
+  "source": "cleaned custom import",
+  "augmentedModel": "model3.augmented.json",
+  "expressions": [
+    {
+      "Name": "01_口型切换",
+      "File": "EXP/01 口型切换.exp3.json"
+    },
+    {
+      "Name": "02_3嘴",
+      "File": "EXP/02 3嘴.exp3.json"
+    },
+    {
+      "Name": "02_龇牙",
+      "File": "EXP/02 龇牙.exp3.json"
+    },
+    {
+      "Name": "03_脸黑",
+      "File": "EXP/03 脸黑.exp3.json"
+    },
+    {
+      "Name": "04_脸红",
+      "File": "EXP/04 脸红.exp3.json"
+    },
+    {
+      "Name": "05_O_O",
+      "File": "EXP/05 O O.exp3.json"
+    },
+    {
+      "Name": "05",
+      "File": "EXP/05 》《.exp3.json"
+    },
+    {
+      "Name": "06_X_X",
+      "File": "EXP/06 X X.exp3.json"
+    },
+    {
+      "Name": "07_流口水",
+      "File": "EXP/07 流口水.exp3.json"
+    },
+    {
+      "Name": "08_O嘴",
+      "File": "EXP/08 O嘴.exp3.json"
+    },
+    {
+      "Name": "08_担心嘴",
+      "File": "EXP/08 担心嘴.exp3.json"
+    },
+    {
+      "Name": "08_栗子嘴",
+      "File": "EXP/08 栗子嘴.exp3.json"
+    },
+    {
+      "Name": "11_尾巴消失",
+      "File": "EXP/11 尾巴消失.exp3.json"
+    },
+    {
+      "Name": "12_耳朵消失",
+      "File": "EXP/12 耳朵消失.exp3.json"
+    },
+    {
+      "Name": "13_水印消除",
+      "File": "EXP/13 水印消除.exp3.json"
+    }
+  ],
+  "motions": {},
+  "stateExpressions": {},
+  "stateGestures": {},
+  "lipSyncParam": "ParamMouthOpenY",
+  "mouthRange": 2.1,
+  "generatedAt": "2026-10-23T16:23:27.056Z"
+}

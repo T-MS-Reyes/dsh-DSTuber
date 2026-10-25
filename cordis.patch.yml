@@ -1,0 +1,6 @@
+# dsh-dstuber bundle patch: inserts the Host row into the web profile roster.
+# The `dsh.client` declaration in package.json makes the browser half
+# (exports "./client") load in the DSH Web UI.
+- insert:
+    - id: dsh-dstuber
+      name: dsh-dstuber

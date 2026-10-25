@@ -1,0 +1,273 @@
+{
+  "id": "ds-q",
+  "name": "DS鲸鱼娘（桌面Q版）",
+  "version": 3,
+  "source": "DS面捕版.zip",
+  "credits": {
+    "model": "@氵六青 (bilibili 11272072)",
+    "character": "@上善无形 / @ZipZipPin",
+    "license": "CC BY-NC-SA 4.0",
+    "note": "用户自备、仅本地使用；不随插件分发。"
+  },
+  "augmentedModel": "model3.augmented.json",
+  "expressions": [
+    {
+      "Name": "love",
+      "File": "love.exp3.json"
+    },
+    {
+      "Name": "sticker_rabbit",
+      "File": "兔兔贴纸.exp3.json"
+    },
+    {
+      "Name": "hairstyle_ponytail",
+      "File": "单边马尾.exp3.json"
+    },
+    {
+      "Name": "peace",
+      "File": "双手比耶.exp3.json"
+    },
+    {
+      "Name": "tongue",
+      "File": "吐舌.exp3.json"
+    },
+    {
+      "Name": "soul",
+      "File": "吐魂.exp3.json"
+    },
+    {
+      "Name": "blank",
+      "File": "呆呆眼.exp3.json"
+    },
+    {
+      "Name": "cry",
+      "File": "哭.exp3.json"
+    },
+    {
+      "Name": "cat_paws",
+      "File": "喵喵手~喵~动画.exp3.json"
+    },
+    {
+      "Name": "glasses_round",
+      "File": "圆眼镜.exp3.json"
+    },
+    {
+      "Name": "sunglasses",
+      "File": "墨镜.exp3.json"
+    },
+    {
+      "Name": "headband",
+      "File": "头箍.exp3.json"
+    },
+    {
+      "Name": "parfait",
+      "File": "巴菲.exp3.json"
+    },
+    {
+      "Name": "happy",
+      "File": "开心兴奋.exp3.json"
+    },
+    {
+      "Name": "heartbeat",
+      "File": "心跳.exp3.json"
+    },
+    {
+      "Name": "sad",
+      "File": "悲伤.exp3.json"
+    },
+    {
+      "Name": "flower",
+      "File": "情绪花花.exp3.json"
+    },
+    {
+      "Name": "exclamation",
+      "File": "感叹号.exp3.json"
+    },
+    {
+      "Name": "phone_color",
+      "File": "手机换色.exp3.json"
+    },
+    {
+      "Name": "squeeze",
+      "File": "挤.exp3.json"
+    },
+    {
+      "Name": "retract",
+      "File": "撤回.exp3.json"
+    },
+    {
+      "Name": "glasses_square",
+      "File": "方眼镜.exp3.json"
+    },
+    {
+      "Name": "star_eyes",
+      "File": "星星眼.exp3.json"
+    },
+    {
+      "Name": "dizzy",
+      "File": "晕晕.exp3.json"
+    },
+    {
+      "Name": "glasses_oval",
+      "File": "椭圆眼镜.exp3.json"
+    },
+    {
+      "Name": "eraser",
+      "File": "橡皮.exp3.json"
+    },
+    {
+      "Name": "sweat",
+      "File": "流汗.exp3.json"
+    },
+    {
+      "Name": "dark_tablecloth",
+      "File": "深色桌布.exp3.json"
+    },
+    {
+      "Name": "order_pressed",
+      "File": "点菜按下.exp3.json"
+    },
+    {
+      "Name": "heart_eyes",
+      "File": "爱心眼.exp3.json"
+    },
+    {
+      "Name": "sticker_cat",
+      "File": "猫猫贴纸.exp3.json"
+    },
+    {
+      "Name": "angry",
+      "File": "生气.exp3.json"
+    },
+    {
+      "Name": "paintbrush",
+      "File": "画笔.exp3.json"
+    },
+    {
+      "Name": "blush",
+      "File": "脸红.exp3.json"
+    },
+    {
+      "Name": "omurice",
+      "File": "蛋包饭.exp3.json"
+    },
+    {
+      "Name": "sticker_bow",
+      "File": "蝴蝶结贴纸.exp3.json"
+    },
+    {
+      "Name": "mischievous",
+      "File": "调皮.exp3.json"
+    },
+    {
+      "Name": "sleepy_drool",
+      "File": "闭眼口水.exp3.json"
+    },
+    {
+      "Name": "question",
+      "File": "问号.exp3.json"
+    },
+    {
+      "Name": "gloomy",
+      "File": "阴暗.exp3.json"
+    },
+    {
+      "Name": "claw",
+      "File": "魔爪.exp3.json"
+    },
+    {
+      "Name": "claw_alt",
+      "File": "魔爪换色.exp3.json"
+    },
+    {
+      "Name": "whale",
+      "File": "鲸鱼.exp3.json"
+    },
+    {
+      "Name": "whale_on_desk",
+      "File": "鲸鱼放桌上.exp3.json"
+    }
+  ],
+  "motions": {
+    "Idle": [
+      "idle"
+    ],
+    "Gesture": [
+      "spray",
+      "open_lid",
+      "ketchup",
+      "selfie",
+      "selfie_simple",
+      "bubbles",
+      "aidale"
+    ]
+  },
+  "stateExpressions": {
+    "idle": [],
+    "thinking": [
+      "blank",
+      "question"
+    ],
+    "working": [
+      "glasses_round"
+    ],
+    "waiting": [
+      "question",
+      "sweat"
+    ],
+    "happy": [
+      "happy",
+      "star_eyes"
+    ],
+    "excited": [
+      "heart_eyes",
+      "star_eyes"
+    ],
+    "shy": [
+      "blush"
+    ],
+    "sad": [
+      "sad",
+      "cry"
+    ],
+    "angry": [
+      "angry",
+      "claw"
+    ],
+    "confused": [
+      "dizzy",
+      "sweat"
+    ],
+    "sleepy": [
+      "sleepy_drool"
+    ],
+    "error": [
+      "sweat",
+      "sad"
+    ],
+    "success": [
+      "happy",
+      "peace"
+    ]
+  },
+  "stateGestures": {
+    "happy": [
+      "peace",
+      "aidale"
+    ],
+    "excited": [
+      "selfie",
+      "bubbles"
+    ],
+    "angry": [
+      "spray"
+    ],
+    "success": [
+      "peace"
+    ]
+  },
+  "lipSyncParam": "ParamMouthOpenY",
+  "mouthRange": 2.1,
+  "missing": [],
+  "generatedAt": "2026-10-23T16:30:47.105Z"
+}

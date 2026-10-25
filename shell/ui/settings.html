@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>DS Tuber 设置</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17233a;
+      --muted: #6d7788;
+      --line: #d9d2c4;
+      --paper: #f4efe6;
+      --card: #fffdf8;
+      --accent: #24466f;
+      --accent-2: #355f8f;
+      --disabled: #b8b3a8;
+    }
+    html, body { margin: 0; height: 100%; background: var(--paper); overflow: hidden; }
+    body {
+      font: 13px/1.45 "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      padding: 14px;
+      box-sizing: border-box;
+    }
+    [hidden] { display: none !important; }
+    .card {
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      border-radius: 14px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(28, 38, 52, 0.12);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    header { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 2px; }
+    h1 { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: .02em; }
+    .tag { color: var(--muted); font-size: 11px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 2px 0 4px; border-bottom: 1px solid var(--line); }
+    .tab {
+      height: 26px; padding: 0 14px; border-radius: 7px;
+      border: 1px solid transparent; background: transparent;
+      color: var(--muted); font: inherit; cursor: pointer;
+    }
+    .tab:hover { background: rgba(36, 70, 111, 0.06); color: var(--accent); }
+    .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .page { display: flex; flex-direction: column; gap: 0; min-width: 0; max-width: 100%; }
+    .row {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 5px 0;
+      border-top: 1px dashed var(--line);
+      min-width: 0;
+    }
+    .row:first-of-type { border-top: 0; }
+    .label { color: var(--ink); font-size: 12px; }
+    .label small { display: block; color: var(--muted); font-size: 10.5px; }
+    .control { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; min-width: 0; }
+    select, input[type="text"], input[type="number"] {
+      height: 28px; box-sizing: border-box; border-radius: 7px;
+      border: 1px solid var(--line); background: #fff; color: var(--ink);
+      padding: 0 8px; font: inherit;
+    }
+    select { min-width: 0; flex: 1; }
+    input[type="text"] { flex: 1; min-width: 0; }
+    input[type="range"] { flex: 1; accent-color: var(--accent); min-width: 0; }
+    .value { width: 42px; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+    /* Double-clicking a slider value turns it into an exact-number editor. */
+    .value.editable { cursor: text; }
+    .value.editable:hover { color: var(--accent); }
+    .value input.value-editor {
+      width: 62px; height: 24px; padding: 0 5px; border-radius: 6px;
+      border: 1px solid var(--accent); background: #fff; color: var(--ink);
+      font: inherit; text-align: right; outline: none;
+      font-variant-numeric: tabular-nums; appearance: textfield;
+    }
+    .value input.value-editor::-webkit-inner-spin-button,
+    .value input.value-editor::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+    /* Model adaptation report: one compact row per model expression. */
+    .expr-list { display: flex; flex-direction: column; gap: 3px; margin: 2px 0 6px; }
+    .expr-row {
+      display: grid; grid-template-columns: minmax(0, 1fr) 96px; gap: 8px;
+      align-items: center; font-size: 11px; color: var(--ink);
+    }
+    .expr-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .expr-row select { height: 24px; font-size: 11px; padding: 0 4px; }
+    .expr-row input.expr-editor {
+      height: 24px; font-size: 11px; padding: 0 6px; box-sizing: border-box;
+      border-radius: 6px; border: 1px solid var(--accent); background: #fff;
+      color: var(--ink); outline: none;
+    }
+    button {
+      height: 28px; padding: 0 12px; border-radius: 7px;
+      border: 1px solid var(--accent); background: var(--accent);
+      color: #fff; font: inherit; cursor: pointer; white-space: nowrap;
+    }
+    button:hover:not(:disabled) { background: var(--accent-2); }
+    button.ghost { background: transparent; color: var(--accent); }
+    button.ghost:hover:not(:disabled) { background: rgba(36, 70, 111, 0.08); }
+    button:disabled { border-color: var(--line); background: #efeae0; color: var(--disabled); cursor: not-allowed; }
+    label.check { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); font-size: 12px; cursor: pointer; }
+    input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; }
+    .note { color: var(--muted); font-size: 10.5px; white-space: normal; overflow-wrap: anywhere; }
+    .path {
+      color: var(--muted);
+      font-size: 10.5px;
+      line-height: 1.35;
+      word-break: break-all;
+      white-space: normal;
+      max-width: 420px;
+    }
+    .status { min-height: 16px; color: var(--muted); font-size: 11px; overflow-wrap: anywhere; white-space: normal; }
+    .status.error { color: #b3413d; }
+    footer { margin-top: auto; display: flex; flex-wrap: wrap; gap: 7px; padding-top: 8px; border-top: 1px solid var(--line); min-width: 0; max-width: 100%; }
+    footer .spacer { flex: 1; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <h1>DS Tuber 设置</h1>
+      <span class="tag">本地程序设置</span>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-page="general" type="button">常规</button>
+      <button class="tab" data-page="subtitle" type="button">字幕</button>
+      <button class="tab" data-page="chat" type="button">对话</button>
+      <button class="tab" data-page="voice" type="button">语音</button>
+      <button class="tab" data-page="model" type="button">模型</button>
+    </nav>
+
+    <section id="page-general" class="page">
+      <div class="row">
+        <div class="label">角色<small>Live2D 模型</small></div>
+        <div class="control">
+          <span id="characterName" class="note">DS鲸鱼娘（桌面Q版）</span>
+          <button id="openModel" class="ghost" type="button">管理模型</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">启动<small>DSH 启动时</small></div>
+        <div class="control">
+          <label class="check"><input id="autoStart" type="checkbox" /> DSH 启动时自动启动桌宠</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">显示范围<small>桌宠窗口显示多少</small></div>
+        <div class="control">
+          <select id="framing">
+            <option value="bust">半身（头+肩，口型更清楚）</option>
+            <option value="full">全身</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">大小<small>窗口与模型一起缩放</small></div>
+        <div class="control">
+          <input id="scale" type="range" min="60" max="140" step="1" value="100" />
+          <span class="value" id="scaleValue">100%</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">动态<small>减少空闲动作与眨眼</small></div>
+        <div class="control">
+          <label class="check"><input id="reduced" type="checkbox" /> 减少动态</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">双击换表情<small>双击模型随机换一个表情</small></div>
+        <div class="control">
+          <label class="check"><input id="doubleClickExpression" type="checkbox" checked /> 启用</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">在最上层显示<small>始终浮于其他窗口上方</small></div>
+        <div class="control">
+          <label class="check"><input id="alwaysOnTop" type="checkbox" checked /> 置顶</label>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="page-subtitle" class="page" hidden>
+      <div class="row">
+        <div class="label">显示字幕</div>
+        <div class="control">
+          <label class="check"><input id="subtitleVisible" type="checkbox" /> 在桌面上显示字幕框</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">吸附桌宠<small>跟随桌宠位置</small></div>
+        <div class="control">
+          <label class="check"><input id="subtitleSnap" type="checkbox" /> 自动贴到桌宠旁边</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">吸附方向</div>
+        <div class="control">
+          <select id="subtitleSide">
+            <option value="auto">自动（空间最大的一侧）</option>
+            <option value="bottom">下方</option>
+            <option value="top">上方</option>
+            <option value="left">左侧</option>
+            <option value="right">右侧</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">宽度<small>不超过屏幕 4/5</small></div>
+        <div class="control">
+          <input id="subtitleWidth" type="range" min="240" max="1365" step="1" value="350" />
+          <span class="value" id="subtitleWidthValue">350px</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">高度<small>不超过屏幕 1/2</small></div>
+        <div class="control">
+          <input id="subtitleHeight" type="range" min="60" max="533" step="1" value="100" />
+          <span class="value" id="subtitleHeightValue">100px</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">字号</div>
+        <div class="control">
+          <input id="subtitleFont" type="range" min="12" max="32" step="1" value="16" />
+          <span class="value" id="subtitleFontValue">16px</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">半透明背景<small>蓝色底衬</small></div>
+        <div class="control">
+          <label class="check"><input id="subtitleSemi" type="checkbox" /> 默认半透明背景</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">背景不透明度</div>
+        <div class="control">
+          <input id="subtitleBg" type="range" min="0" max="100" step="1" value="72" />
+          <span class="value" id="subtitleBgValue">72%</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">预览文本</div>
+        <div class="control">
+          <input id="subtitleText" type="text" maxlength="160" placeholder="输入字幕预览文本" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">提示</div>
+        <div class="control">
+          <span class="note">右键字幕框可快速开关；拖动字幕框会自动取消吸附。文本后续由对话/TTS 自动更新。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-chat" class="page" hidden>
+      <div class="row">
+        <div class="label">输入条</div>
+        <div class="control">
+          <label class="check"><input id="chatVisible" type="checkbox" /> 显示屏幕底部输入条</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">宽度<small>最大屏幕 4/5</small></div>
+        <div class="control">
+          <input id="chatWidth" type="range" min="300" max="1365" step="1" value="350" />
+          <span class="value" id="chatWidthValue">350px</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">自动吸附<small>桌宠 / 字幕</small></div>
+        <div class="control">
+          <label class="check"><input id="chatSnap" type="checkbox" /> 跟随桌宠</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">字幕自由时<small>跟随字幕</small></div>
+        <div class="control">
+          <label class="check"><input id="chatFollow" type="checkbox" /> 字幕未吸附时，输入条跟随字幕</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">吸附方向</div>
+        <div class="control">
+          <select id="chatSide">
+            <option value="auto">自动（空间最大的一侧）</option>
+            <option value="bottom">下方</option>
+            <option value="top">上方</option>
+            <option value="left">左侧</option>
+            <option value="right">右侧</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">窗口置顶</div>
+        <div class="control">
+          <label class="check"><input id="chatTopmost" type="checkbox" /> 保持在其它窗口上方</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">工作时活跃程度<small>碎碎念频率</small></div>
+        <div class="control">
+          <select id="activity">
+            <option value="quiet">安静</option>
+            <option value="normal">标准</option>
+            <option value="active">活跃</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">当前人格<small>用于聊天与总结</small></div>
+        <div class="control">
+          <span id="personaName" class="note">人设原文.md</span>
+          <button id="uploadPersona" class="ghost" type="button">上传 .md</button>
+          <button id="resetPersona" class="ghost" type="button">恢复默认</button>
+          <input id="personaFile" type="file" accept=".md,.markdown,text/markdown" hidden />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">打开</div>
+        <div class="control">
+          <button id="openChat" type="button">打开输入条</button>
+          <span class="note">关闭后可从托盘“对话输入”重新打开</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">说明</div>
+        <div class="control">
+          <span class="note">输入会同步到当前活跃 DSH 会话；主回复留在 DSH，桌宠的聊天/工作总结显示在字幕。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-voice" class="page" hidden>
+      <div class="row">
+        <div class="label">朗读<small>桌宠自己的回复</small></div>
+        <div class="control">
+          <label class="check"><input id="voiceEnabled" type="checkbox" /> 启用语音</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">碎碎念<small>工作中的嘀咕</small></div>
+        <div class="control">
+          <select id="voiceMurmurs">
+            <option value="off">不朗读</option>
+            <option value="important" selected>只读重要</option>
+            <option value="all">全部朗读</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">引擎状态<small>当前可用语音引擎</small></div>
+        <div class="control">
+          <div id="engineList" class="expr-list"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">语音合成<small>选择 TTS 引擎</small></div>
+        <div class="control">
+          <select id="voiceProvider">
+            <option value="edge" selected>Edge TTS（默认，免配置）</option>
+            <option value="gpt-sovits">GPT-SoVITS（本地角色音色）</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">GSV 服务<small>本地引擎起停</small></div>
+        <div class="control">
+          <span id="gsvStatus" class="note">检测中…</span>
+          <button id="gsvStart" class="ghost" type="button">启动服务</button>
+          <button id="gsvStop" class="ghost" type="button">停止服务</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">服务路径<small>api_v2.py 所在目录</small></div>
+        <div class="control">
+          <span id="gsvAppDir" class="path">-</span>
+        </div>
+      </div>
+
+      <div id="voiceEdgePanel">
+        <div class="row">
+          <div class="label">Edge 音色<small>默认 zh-CN-XiaoyiNeural</small></div>
+          <div class="control">
+            <input id="voiceEdgeVoice" type="text" spellcheck="false" placeholder="zh-CN-XiaoyiNeural" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">语速<small>Edge 原生，百分比</small></div>
+          <div class="control">
+            <input id="voiceEdgeRate" type="range" min="-50" max="50" step="1" value="0" />
+            <span id="voiceEdgeRateValue" class="value">+0%</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">音调<small>Edge 原生，Hz</small></div>
+          <div class="control">
+            <input id="voiceEdgePitch" type="range" min="-100" max="100" step="1" value="0" />
+            <span id="voiceEdgePitchValue" class="value">+0Hz</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">FFmpeg<small>解码 Edge MP3，可留空自动查找</small></div>
+          <div class="control">
+            <input id="voiceFfmpeg" type="text" spellcheck="false" placeholder="D:\...\ffmpeg.exe" />
+          </div>
+        </div>
+      </div>
+
+      <div id="voiceGsvPanel" hidden>
+        <div class="row">
+          <div class="label">服务地址<small>GPT-SoVITS api_v2.py</small></div>
+          <div class="control">
+            <input id="voiceGsvUrl" type="text" spellcheck="false" placeholder="http://127.0.0.1:9880" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">GPT 权重<small>.ckpt</small></div>
+          <div class="control">
+            <input id="voiceGsvGpt" type="text" spellcheck="false" placeholder="D:\...\dswhalegirl-e16.ckpt" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">SoVITS 权重<small>.pth</small></div>
+          <div class="control">
+            <input id="voiceGsvSovits" type="text" spellcheck="false" placeholder="D:\...\dswhalegirl_e8_s248.pth" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">参考音频<small>5–10 秒干净参考音</small></div>
+          <div class="control">
+            <input id="voiceGsvReference" type="text" spellcheck="false" placeholder="D:\...\reference.wav" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">参考文本<small>与参考音频逐字对应</small></div>
+          <div class="control">
+            <textarea id="voiceGsvPrompt" rows="3" spellcheck="false" placeholder="什么嘛，这么简单的事情，你居然专门跑来问我。"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">语速<small>speed_factor</small></div>
+          <div class="control">
+            <input id="voiceGsvSpeed" type="range" min="50" max="200" step="1" value="100" />
+            <span id="voiceGsvSpeedValue" class="value">1.00x</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="label">流式模式<small>3 最快，1 质量最好</small></div>
+          <div class="control">
+            <select id="voiceGsvStreaming">
+              <option value="3" selected>3 - 低延迟</option>
+              <option value="2">2 - 平衡</option>
+              <option value="1">1 - 高质量</option>
+              <option value="0">0 - 非流式</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">音量<small>播放音量</small></div>
+        <div class="control">
+          <input id="voiceVolume" type="range" min="0" max="100" step="1" value="80" />
+          <span id="voiceVolumeValue" class="value">80%</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">保存</div>
+        <div class="control">
+          <button id="saveVoice" type="button">保存语音设置</button>
+          <span class="note">保存后下一句生效；Edge 无需 Key，GSV 需要先启动本地服务。</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">说明</div>
+        <div class="control">
+          <span class="note">Edge TTS 默认音色为 zh-CN-XiaoyiNeural；选择 GPT-SoVITS 后填写本地服务与语音包路径。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="page-model" class="page" hidden>
+      <div class="row">
+        <div class="label">已有模型<small>切换后立即重载</small></div>
+        <div class="control">
+          <select id="modelSelect"></select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">当前模型</div>
+        <div class="control">
+          <span id="modelName" class="note">DS鲸鱼娘（桌面Q版）</span>
+          <span id="modelKind" class="note"></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">删除模型<small>仅自定义</small></div>
+        <div class="control">
+          <select id="deleteSelect"></select>
+          <button id="deleteModel" class="ghost" type="button">删除所选模型</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">导入<small>model3.json / zip / 7z</small></div>
+        <div class="control">
+          <button id="importModel" type="button">导入自定义模型…</button>
+          <button id="resetModel" class="ghost" type="button">恢复默认模型</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">模型位置</div>
+        <div class="control">
+          <span id="modelPath" class="path">插件内置默认模型</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">模型适配<small>识别参数、表情与动作</small></div>
+        <div class="control">
+          <button id="adaptModel" type="button">适配当前模型</button>
+          <span id="adaptStatus" class="note">尚未适配</span>
+        </div>
+      </div>
+
+      <div id="adaptReport" hidden>
+        <div class="row">
+          <div class="label">能力</div>
+          <div class="control"><span id="adaptCaps" class="note">-</span></div>
+        </div>
+        <div class="row">
+          <div class="label">提示</div>
+          <div class="control"><span id="adaptNotes" class="note">-</span></div>
+        </div>
+        <div class="row">
+          <div class="label">表情映射<small>可手动修正</small></div>
+          <div class="control"><span class="note">下拉框决定这个表情归到哪种情绪；选“忽略”表示不参与表演。</span></div>
+        </div>
+        <div id="expressionMap" class="expr-list"></div>
+        <div class="row">
+          <div class="label">保存</div>
+          <div class="control">
+            <button id="saveSemantics" class="ghost" type="button">保存表情映射</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">说明</div>
+        <div class="control">
+          <span class="note">选择 model3.json 或 .zip/.7z 压缩包；模型会复制到用户目录并自动生成运行时文件，导入后桌宠立即重载。</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="status" id="status">读取设置…</div>
+
+    <footer>
+      <button id="show">显示桌宠</button>
+      <button id="hidePet" class="ghost">隐藏桌宠</button>
+      <button id="openDsh" class="ghost">打开 DSH</button>
+      <span class="spacer"></span>
+      <button id="quit" class="ghost">退出桌宠</button>
+    </footer>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html>

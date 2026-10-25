@@ -1,0 +1,406 @@
+{
+  "modelKey": "builtin-ds-q",
+  "name": "DS鲸鱼娘（桌面Q版）",
+  "savedAt": "2026-10-25T14:06:57.834Z",
+  "expressions": [
+    {
+      "name": "love",
+      "label": "love",
+      "kind": "emotion",
+      "semantic": "happy",
+      "customTag": null
+    },
+    {
+      "name": "sticker_rabbit",
+      "label": "兔兔贴纸",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "hairstyle_ponytail",
+      "label": "单边马尾",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "peace",
+      "label": "双手比耶",
+      "kind": "emotion",
+      "semantic": "happy",
+      "customTag": null
+    },
+    {
+      "name": "tongue",
+      "label": "吐舌",
+      "kind": "emotion",
+      "semantic": "awkward",
+      "customTag": null
+    },
+    {
+      "name": "soul",
+      "label": "吐魂",
+      "kind": "emotion",
+      "semantic": "dizzy",
+      "customTag": null
+    },
+    {
+      "name": "blank",
+      "label": "呆呆眼",
+      "kind": "custom",
+      "semantic": null,
+      "customTag": "打瞌睡"
+    },
+    {
+      "name": "cry",
+      "label": "哭",
+      "kind": "emotion",
+      "semantic": "sad",
+      "customTag": null
+    },
+    {
+      "name": "cat_paws",
+      "label": "喵喵手~喵~动画",
+      "kind": "custom",
+      "semantic": null,
+      "customTag": "卖萌"
+    },
+    {
+      "name": "glasses_round",
+      "label": "圆眼镜",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "sunglasses",
+      "label": "墨镜",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "headband",
+      "label": "头箍",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "parfait",
+      "label": "巴菲",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "happy",
+      "label": "开心兴奋",
+      "kind": "emotion",
+      "semantic": "happy",
+      "customTag": null
+    },
+    {
+      "name": "heartbeat",
+      "label": "心跳",
+      "kind": "emotion",
+      "semantic": "shy",
+      "customTag": null
+    },
+    {
+      "name": "sad",
+      "label": "悲伤",
+      "kind": "emotion",
+      "semantic": "sad",
+      "customTag": null
+    },
+    {
+      "name": "flower",
+      "label": "情绪花花",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "exclamation",
+      "label": "感叹号",
+      "kind": "emotion",
+      "semantic": "surprised",
+      "customTag": null
+    },
+    {
+      "name": "phone_color",
+      "label": "手机换色",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "squeeze",
+      "label": "挤",
+      "kind": "emotion",
+      "semantic": "dizzy",
+      "customTag": null
+    },
+    {
+      "name": "retract",
+      "label": "撤回",
+      "kind": "emotion",
+      "semantic": "awkward",
+      "customTag": null
+    },
+    {
+      "name": "glasses_square",
+      "label": "方眼镜",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "star_eyes",
+      "label": "星星眼",
+      "kind": "emotion",
+      "semantic": "surprised",
+      "customTag": null
+    },
+    {
+      "name": "dizzy",
+      "label": "晕晕",
+      "kind": "emotion",
+      "semantic": "dizzy",
+      "customTag": null
+    },
+    {
+      "name": "glasses_oval",
+      "label": "椭圆眼镜",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "eraser",
+      "label": "橡皮",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "sweat",
+      "label": "流汗",
+      "kind": "emotion",
+      "semantic": "awkward",
+      "customTag": null
+    },
+    {
+      "name": "dark_tablecloth",
+      "label": "深色桌布",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "order_pressed",
+      "label": "点菜按下",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "heart_eyes",
+      "label": "爱心眼",
+      "kind": "custom",
+      "semantic": null,
+      "customTag": "喜爱"
+    },
+    {
+      "name": "sticker_cat",
+      "label": "猫猫贴纸",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "angry",
+      "label": "生气",
+      "kind": "emotion",
+      "semantic": "angry",
+      "customTag": null
+    },
+    {
+      "name": "paintbrush",
+      "label": "画笔",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "blush",
+      "label": "脸红",
+      "kind": "emotion",
+      "semantic": "shy",
+      "customTag": null
+    },
+    {
+      "name": "omurice",
+      "label": "蛋包饭",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "sticker_bow",
+      "label": "蝴蝶结贴纸",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "mischievous",
+      "label": "调皮",
+      "kind": "emotion",
+      "semantic": "proud",
+      "customTag": null
+    },
+    {
+      "name": "sleepy_drool",
+      "label": "闭眼口水",
+      "kind": "emotion",
+      "semantic": "silly",
+      "customTag": null
+    },
+    {
+      "name": "question",
+      "label": "问号",
+      "kind": "custom",
+      "semantic": null,
+      "customTag": "疑惑"
+    },
+    {
+      "name": "gloomy",
+      "label": "阴暗",
+      "kind": "custom",
+      "semantic": null,
+      "customTag": "失落"
+    },
+    {
+      "name": "claw",
+      "label": "魔爪",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "claw_alt",
+      "label": "魔爪换色",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "whale",
+      "label": "鲸鱼",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    },
+    {
+      "name": "whale_on_desk",
+      "label": "鲸鱼放桌上",
+      "kind": "cosmetic",
+      "semantic": "cosmetic",
+      "customTag": null
+    }
+  ],
+  "customSemantics": {
+    "打瞌睡": {
+      "emotion": "sleepy",
+      "keywords": [
+        "困了",
+        "打哈欠",
+        "想睡觉",
+        "没精神"
+      ],
+      "summary": "困倦想睡",
+      "recipe": {
+        "eyes": "half",
+        "brows": "normal",
+        "mouth": "normal",
+        "head": "down"
+      },
+      "analyzedAt": "2026-10-24T17:49:07.746Z"
+    },
+    "卖萌": {
+      "emotion": "cute",
+      "keywords": [
+        "可爱",
+        "撒娇",
+        "卖萌",
+        "装乖",
+        "求抱抱"
+      ],
+      "summary": "撒娇装可爱",
+      "recipe": {
+        "eyes": "smile",
+        "brows": "up",
+        "mouth": "pout",
+        "head": "tilt_left"
+      },
+      "analyzedAt": "2026-10-25T13:12:39.144Z"
+    },
+    "喜爱": {
+      "emotion": "affection",
+      "keywords": [
+        "喜欢",
+        "爱你",
+        "心动",
+        "亲亲",
+        "宝贝"
+      ],
+      "summary": "喜爱亲近",
+      "recipe": {
+        "eyes": "smile",
+        "brows": "up",
+        "mouth": "smile",
+        "head": "tilt_right"
+      },
+      "analyzedAt": "2026-10-25T13:12:39.144Z"
+    },
+    "疑惑": {
+      "emotion": "confused",
+      "keywords": [
+        "疑惑",
+        "不懂",
+        "为什么",
+        "问号",
+        "啊"
+      ],
+      "summary": "困惑不解",
+      "recipe": {
+        "eyes": "wide",
+        "brows": "inner",
+        "mouth": "normal",
+        "head": "tilt_left"
+      },
+      "analyzedAt": "2026-10-25T13:12:39.144Z"
+    },
+    "失落": {
+      "emotion": "disappointed",
+      "keywords": [
+        "失落",
+        "难过",
+        "沮丧",
+        "委屈",
+        "唉"
+      ],
+      "summary": "低落难过",
+      "recipe": {
+        "eyes": "half",
+        "brows": "down",
+        "mouth": "frown",
+        "head": "down"
+      },
+      "analyzedAt": "2026-10-25T13:12:39.144Z"
+    }
+  }
+}

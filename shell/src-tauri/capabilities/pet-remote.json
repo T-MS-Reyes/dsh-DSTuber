@@ -1,0 +1,12 @@
+{
+  "identifier": "pet-remote",
+  "description": "Allow the Host-served stage and chat pages to drive their native windows through events",
+  "windows": ["pet", "chat"],
+  "remote": {
+    "urls": [
+      "http://127.0.0.1:3080/*",
+      "http://127.0.0.1:8099/*"
+    ]
+  },
+  "permissions": ["core:default"]
+}

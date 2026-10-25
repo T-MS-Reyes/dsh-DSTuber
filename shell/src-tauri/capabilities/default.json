@@ -1,0 +1,6 @@
+{
+  "identifier": "default",
+  "description": "Default capabilities for the dsh-dstuber pet, settings and subtitle windows",
+  "windows": ["pet", "settings", "subtitle"],
+  "permissions": ["core:default"]
+}

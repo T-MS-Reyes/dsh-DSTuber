@@ -1,0 +1,100 @@
+{
+  "ok": true,
+  "time": 1792683566554,
+  "durationMs": 3581,
+  "loadMs": 196,
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+  "webgl": {
+    "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "vendor": "Google Inc. (NVIDIA)",
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Laptop GPU (0x00002860) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "alpha": true,
+    "maxTextureSize": 16384
+  },
+  "model": {
+    "name": "DS 鲸鱼娘（鼠控版）",
+    "width": 357.2,
+    "height": 357.2,
+    "expressions": 44,
+    "motions": {
+      "Idle": [
+        "idle"
+      ],
+      "Gesture": [
+        "spray",
+        "open_lid",
+        "ketchup",
+        "selfie",
+        "selfie_simple",
+        "bubbles",
+        "aidale"
+      ]
+    }
+  },
+  "expressions": {
+    "total": 44,
+    "passed": 44,
+    "failed": []
+  },
+  "motions": {
+    "total": 7,
+    "passed": 7,
+    "failed": [],
+    "errors": []
+  },
+  "mouth": {
+    "param": "ParamMouthOpenY",
+    "before": 0.3050236105918884,
+    "after": 1,
+    "applied": true,
+    "exists": true,
+    "index": 36,
+    "min": 0,
+    "max": 1
+  },
+  "states": {
+    "idle": true,
+    "thinking": true,
+    "working": true,
+    "waiting": true,
+    "happy": true,
+    "excited": true,
+    "shy": true,
+    "sad": true,
+    "angry": true,
+    "confused": true,
+    "sleepy": true,
+    "error": true,
+    "success": true
+  },
+  "pixels": {
+    "drawn": 30064,
+    "sampled": 106875,
+    "width": 570,
+    "height": 750,
+    "bounds": {
+      "minX": 92,
+      "minY": 180,
+      "maxX": 568,
+      "maxY": 644
+    }
+  },
+  "fps": 164,
+  "logs": [
+    "loading model http://127.0.0.1:3080/plugins/dsh-dstuber/model/model3.augmented.json",
+    "ready [object Object]"
+  ],
+  "error": null,
+  "context": {
+    "href": "http://127.0.0.1:3080/plugins/dsh-dstuber/stage/index.html?bg=none&hud=1&selftest=1&shell=1",
+    "inner": [
+      380,
+      500
+    ],
+    "dpr": 1.5,
+    "frame": null,
+    "parent": null
+  },
+  "receivedAt": 1792683566556,
+  "seq": 146
+}
