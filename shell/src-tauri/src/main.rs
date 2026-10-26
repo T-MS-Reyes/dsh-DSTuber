@@ -237,6 +237,18 @@ fn apply_always_on_top(app: &AppHandle, state: &UiState, enabled: bool) -> Resul
         .get_webview_window(PET_LABEL)
         .ok_or_else(|| "pet window is missing".to_string())?;
     pet.set_always_on_top(enabled).map_err(|error| error.to_string())?;
+    // The subtitle and chat windows float above the pet; they must follow the
+    // same switch, otherwise "not on top" still leaves them above other apps.
+    for label in [SUBTITLE_LABEL, CHAT_LABEL] {
+        if let Some(window) = app.get_webview_window(label) {
+            let _ = window.set_always_on_top(enabled);
+        }
+    }
+    // Keep the chat window's own topmost flag in sync so reopening it does not
+    // silently restore always-on-top.
+    if let Some(chat_state) = app.try_state::<ChatState>() {
+        chat_state.0.lock().unwrap().always_on_top = enabled;
+    }
     state.0.lock().unwrap().always_on_top = enabled;
     Ok(())
 }

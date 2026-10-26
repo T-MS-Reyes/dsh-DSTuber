@@ -559,14 +559,17 @@
     if (result !== null) setStatus(reduced.checked ? '已减少动态' : '已恢复动态')
   })
 
-  alwaysOnTop.addEventListener('change', async () => {
-    const result = await call('apply_pet_settings', {
-      settings: { alwaysOnTop: alwaysOnTop.checked },
-    })
-    if (result !== null) {
-      setStatus(alwaysOnTop.checked ? '桌宠已置顶' : '桌宠已取消置顶')
-    } else {
+  alwaysOnTop?.addEventListener('change', async () => {
+    // Tauri resolves a Rust `Result<(), String>` command with null on success,
+    // so success must be judged by "no exception", not by the return value.
+    try {
+      await invoke('apply_pet_settings', {
+        settings: { alwaysOnTop: alwaysOnTop.checked },
+      })
+      setStatus(alwaysOnTop.checked ? '桌宠已置顶' : '桌宠已取消置顶（随其他窗口下沉）')
+    } catch (error) {
       alwaysOnTop.checked = !alwaysOnTop.checked
+      setStatus(`切换失败：${error instanceof Error ? error.message : String(error)}`, true)
     }
   })
 
@@ -1077,7 +1080,7 @@
       scale.value = String(Math.round(current.scale * 100))
       scaleValue.textContent = `${scale.value}%`
       reduced.checked = !!current.reducedMotion
-      alwaysOnTop.checked = current.alwaysOnTop !== false
+      if (alwaysOnTop) alwaysOnTop.checked = current.alwaysOnTop !== false
     }
     const savedAutoStart = await call('get_pet_autostart')
     if (typeof savedAutoStart === 'boolean') autoStart.checked = savedAutoStart
