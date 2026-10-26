@@ -5,6 +5,11 @@
   "type": "module",
   "license": "MIT",
   "description": "Live2D desktop companion for DeepSeek Harness: settings, DSH event bridge, chat relay and a Live2D stage.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/T-MS-Reyes/dsh-DSTuber.git"
+  },
+  "homepage": "https://github.com/T-MS-Reyes/dsh-DSTuber#readme",
   "exports": {
     ".": "./src/index.js",
     "./client": "./client/client.js",
