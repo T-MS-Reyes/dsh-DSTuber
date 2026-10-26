@@ -47,10 +47,20 @@ export function apply(ctx, config = {}) {
       onEnvelope: (payload) => store.noteSpeechEnvelope(payload),
     })
     const stopVoiceFeed = store.subscribe((message) => voice.handle(message))
+    // Set once the webServer injection resolves; every shell spawn asks for a
+    // fresh URL so a crash-restart picks up the current auth token.
+    let stageUrlFactory = null
     // Closing the pet from its own menu/tray stops every pet service too.
     const shell = createShellSupervisor({
       getConfig: () => config,
       log,
+      getStageUrl: () => {
+        try {
+          return stageUrlFactory?.() ?? ''
+        } catch {
+          return ''
+        }
+      },
       onClosed: () => {
         try { voice.stopWorker() } catch {}
         try { void gsv?.stop?.() } catch {}
@@ -69,6 +79,20 @@ export function apply(ctx, config = {}) {
       },
     })
     const engines = createEngineManager({ dataDir, gsv, log })
+    // Desktop (and any authenticated web instance) mints a per-process token:
+    // the first page load must carry it so the shell's WebView receives a
+    // session cookie, after which its SSE and API calls are accepted.
+    let connection = null
+    try {
+      connection = ctx.get('connection') ?? null
+    } catch {}
+    const authenticatedUrl = (url) => {
+      try {
+        return connection?.authenticatedUrl?.(url) ?? url
+      } catch {
+        return url
+      }
+    }
     const routes = createRoutes({
       ctx,
       store,
@@ -81,6 +105,7 @@ export function apply(ctx, config = {}) {
       voice,
       gsv,
       engines,
+      authenticatedUrl,
     })
 
     ctx.effect(() => bindEvents(ctx, store, log), 'dsh-dstuber DSH events')
@@ -110,10 +135,15 @@ export function apply(ctx, config = {}) {
         } catch (error) {
           log.warn?.(`[dsh-dstuber] webServer origin unavailable: ${error instanceof Error ? error.message : String(error)}`)
         }
-        const stageUrl = origin
-          ? `${origin}/plugins/dsh-dstuber/stage/index.html?bg=none`
-          : ''
-        const timer = setTimeout(() => shell.start({ url: stageUrl }), 1200)
+        // Rebuilt per spawn (and after every restart) so the URL always carries
+        // the current process token.
+        stageUrlFactory = () => {
+          const current = origin || (server.getOrigin?.() ?? '')
+          return current
+            ? authenticatedUrl(`${current}/plugins/dsh-dstuber/stage/index.html?bg=none`)
+            : ''
+        }
+        const timer = setTimeout(() => shell.start({ url: stageUrlFactory() }), 1200)
         return () => {
           clearTimeout(timer)
           shell.dispose()

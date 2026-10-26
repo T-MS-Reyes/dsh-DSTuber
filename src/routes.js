@@ -179,7 +179,7 @@ async function serveFile(res, baseDir, relative) {
  * handlers are loopback-only; writes additionally require a same-origin
  * browser request (the Tauri shell will use a one-time token later).
  */
-export function createRoutes({ ctx, store, getConfig, log = console, version = '0.0.0', shellStatus = null, shell = null, petBrain = null, voice = null, gsv = null, engines = null }) {
+export function createRoutes({ ctx, store, getConfig, log = console, version = '0.0.0', shellStatus = null, shell = null, petBrain = null, voice = null, gsv = null, engines = null, authenticatedUrl = null }) {
   const dataDir = join(packageRoot, '.webview2')
 
   /** The active model identity used as the profile key. */
@@ -741,7 +741,7 @@ export function createRoutes({ ctx, store, getConfig, log = console, version = '
         try {
           const host = req.headers.host || '127.0.0.1:3080'
           shell.start({
-            url: `http://${host}/plugins/dsh-dstuber/stage/index.html?bg=none`,
+            url: authenticatedUrl ? authenticatedUrl(`http://${host}/plugins/dsh-dstuber/stage/index.html?bg=none`) : `http://${host}/plugins/dsh-dstuber/stage/index.html?bg=none`,
             manual: true,
           })
           sendJson(res, 200, { ok: true, ...shell.status() })

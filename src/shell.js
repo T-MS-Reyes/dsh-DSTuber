@@ -15,7 +15,7 @@ const MAX_RESTARTS = 5
  * file, restarts it with backoff after a crash, and kills the process tree on
  * plugin disposal / DSH exit.
  */
-export function createShellSupervisor({ getConfig, log = console, onClosed = null }) {
+export function createShellSupervisor({ getConfig, log = console, onClosed = null, getStageUrl = null }) {
   const dataDir = join(packageRoot, '.webview2')
   const tempDir = join(packageRoot, '.tmp')
   const pidFile = join(dataDir, 'shell.pid')
@@ -128,7 +128,10 @@ export function createShellSupervisor({ getConfig, log = console, onClosed = nul
       log.warn?.('[dsh-dstuber] shell executable not found; build it with scripts/build-shell.ps1')
       return
     }
-    if (!stageUrl) {
+    // Ask for a fresh stage URL on every spawn: authenticated instances mint a
+    // per-process token, so a crash-restart must not reuse the old one.
+    const spawnUrl = (getStageUrl ? getStageUrl() : '') || stageUrl
+    if (!spawnUrl) {
       lastError = 'stage URL unavailable'
       log.warn?.('[dsh-dstuber] stage URL unavailable; shell not started')
       return
@@ -145,7 +148,7 @@ export function createShellSupervisor({ getConfig, log = console, onClosed = nul
 
     const env = {
       ...process.env,
-      DSH_DSTUBER_STAGE_URL: stageUrl,
+      DSH_DSTUBER_STAGE_URL: spawnUrl,
       DSH_DSTUBER_DATA_DIR: dataDir,
       WEBVIEW2_USER_DATA_FOLDER: dataDir,
       TEMP: tempDir,

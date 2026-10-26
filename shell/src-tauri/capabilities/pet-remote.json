@@ -1,11 +1,11 @@
 {
   "identifier": "pet-remote",
-  "description": "Allow the Host-served stage and chat pages to drive their native windows through events",
+  "description": "Allow the Host-served stage and chat pages to drive their native windows through events, on any local port (desktop builds pick a random port each start)",
   "windows": ["pet", "chat"],
   "remote": {
     "urls": [
-      "http://127.0.0.1:3080/*",
-      "http://127.0.0.1:8099/*"
+      "http://127.0.0.1:*/*",
+      "http://localhost:*/*"
     ]
   },
   "permissions": ["core:default"]
