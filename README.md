@@ -43,6 +43,29 @@ dsh plugin --profile web add dsh-dstuber
 1. 把解压出的 `dsh-dstuber` 目录放进 DSH 插件目录（或通过插件管理器选择该目录安装）；
 2. **桌面端用户**：安装到桌面端独立 profile（`~/.dsh/profiles/desktop`）后重启桌面端。
 
+**方式 C：从源码安装（clone 本仓库）**
+
+```powershell
+# 1. clone 仓库
+git clone https://github.com/T-MS-Reyes/dsh-DSTuber.git
+cd dsh-DSTuber
+
+# 2. 安装 Node 依赖
+npm install
+
+# 3. 构建桌面壳（仓库不含编译好的 exe，必须本地构建一次）
+#    需要 Rust 工具链：https://rustup.rs
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-shell.ps1 -Release
+
+# 4. 安装到 DSH（把路径换成你实际 clone 的目录）
+dsh plugin --profile web add file:D:/path/to/dsh-DSTuber
+```
+
+说明：
+- 桌面壳（`shell/`）是 Rust/Tauri 项目，**仓库不提交 `target/` 编译产物**，所以必须执行第 3 步生成 `dsh-dstuber-shell.exe`；
+- 没有 Rust 工具链时，建议改用方式 A（npm 安装，包内已含编译好的 exe）；
+- 内置模型在 `dev/live2d/`，随仓库提供，无需另外下载。
+
 **通用步骤**
 
 1. **启用插件**：打开 DSH → 设置 → 内置插件 → 桌宠，确认已启用。
